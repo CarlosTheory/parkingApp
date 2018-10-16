@@ -14,65 +14,67 @@
 
 
 <ion-content padding>
-	<ion-list>
-		<ion-item>
-			<ion-label>Nombre:</ion-label>
-			<ion-input type="text" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Apellido:</ion-label>
-			<ion-input type="text" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>E-mail:</ion-label>
-			<ion-input type="email" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Cedula:</ion-label>
-			<ion-input type="text" value="" placeholder="Ejemplo: 1000111"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Contraseña:</ion-label>
-			<ion-input type="password" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Confirmar Contraseña:</ion-label>
-			<ion-input type="password" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Pais:</ion-label>
-			<ion-input type="text" value="Venezuela"></ion-input>
-		</ion-item>
+	<form (ngSubmit)="pasarDatosRegistro()">
+		<ion-list>
+			<ion-item>
+				<ion-label>Nombre:</ion-label>
+				<ion-input type="text" value="" name="name" [(ngModel)]="datosRegistro.name"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Apellido:</ion-label>
+				<ion-input type="text" value="" name="last_name" [(ngModel)]="datosRegistro.last_name"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>E-mail:</ion-label>
+				<ion-input type="email" value="" name="email" [(ngModel)]="datosRegistro.email"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Cedula:</ion-label>
+				<ion-input type="text" value="" placeholder="Ejemplo: 1000111" name="dni" [(ngModel)]="datosRegistro.dni"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Contraseña:</ion-label>
+				<ion-input type="password" value="" name="password" [(ngModel)]="datosRegistro.password"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Confirmar Contraseña:</ion-label>
+				<ion-input type="password" value="" name="confirm_password" [(ngModel)]="datosRegistro.confirm_password"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Pais:</ion-label>
+				<ion-input type="text" value="Venezuela" name="country" disabled></ion-input>
+			</ion-item>
+			<div padding>
+				<ion-col>
+					<ion-item>
+						<ion-label>Estado:</ion-label>
+						<ion-input type="text" [value]="estadoSeleccionado" name="state" disabled></ion-input>
+					</ion-item>
+					<button ion-button (click)="modalEstados()">Seleccionar</button>
+				</ion-col>
+				<ion-col>
+					<ion-item>
+						<ion-label>Ciudad:</ion-label>
+						<ion-input type="text" [value]="ciudadSeleccionada" name="ciudad" disabled></ion-input>
+					</ion-item>
+					<button ion-button (click)="modalCiudades()" >Seleccionar</button>
+				</ion-col>
+			</div>
+			<ion-item>
+				<ion-label>Dirección:</ion-label>
+				<ion-input type="text" name="address" [(ngModel)]="datosRegistro.address"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Codigo Postal:</ion-label>
+				<ion-input type="text" name="zip_code" [(ngModel)]="datosRegistro.zip_code"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Número de Telefono:</ion-label>
+				<ion-input type="text" name="phone_number" [(ngModel)]="datosRegistro.phone_number"></ion-input>
+			</ion-item>
+		</ion-list>
 		<div padding>
-			<ion-col>
-				<ion-item>
-					<ion-label>Estado:</ion-label>
-					<ion-input type="text" [value]="estadoSeleccionado" disabled></ion-input>
-				</ion-item>
-				<button ion-button (click)="modalEstados()">Seleccionar</button>
-			</ion-col>
-			<ion-col>
-				<ion-item>
-					<ion-label>Ciudad:</ion-label>
-					<ion-input type="text" [value]="ciudadSeleccionada" disabled></ion-input>
-				</ion-item>
-				<button ion-button (click)="modalCiudades()" >Seleccionar</button>
-			</ion-col>
+			 <button ion-button block (click)="pasarDatosRegistro()">Registrarse</button>
 		</div>
-		<ion-item>
-			<ion-label>Dirección:</ion-label>
-			<ion-input type="text"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Codigo Postal:</ion-label>
-			<ion-input type="text"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Número de Telefono:</ion-label>
-			<ion-input type="text"></ion-input>
-		</ion-item>
-	</ion-list>
-	<div padding>
-		 <button ion-button block>Registrarse</button>
-	</div>
+	</form>
 </ion-content>

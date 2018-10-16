@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, ModalController } from 'ionic-angular';
 import { GeoDataProvider } from '../../providers/geo-data/geo-data';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 import { EstadosPage } from '../estados/estados';
 import { CiudadesPage } from '../ciudades/ciudades';
-import { LoginPage } from '../login/login';
+
 
 
 /**
@@ -26,13 +27,25 @@ export class SignUpPage {
   public ciudadSeleccionada: string;
 
   public pushHome: any;
+  public datosRegistro = {};
 
 
   //public estadoSeleccionado: string = "Ninguno";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public geoService: GeoDataProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public modalCtrl: ModalController, 
+    public geoService: GeoDataProvider,
+    public authService: AuthServiceProvider
+    ){
     this.estadoSeleccionado = this.geoService.estadoSeleccionado;
     this.estadoSeleccionadoIndex = this.geoService.estadoSeleccionadoIndex;
     this.ciudadSeleccionada = this.geoService.ciudadSeleccionada;
+
+    this.authService.datosRegistro.state = this.estadoSeleccionado;
+    this.authService.datosRegistro.city = this.ciudadSeleccionada;
+
+    this.datosRegistro = this.authService.datosRegistro;
   }
 
   modalEstados(){
@@ -46,6 +59,10 @@ export class SignUpPage {
       estadoName: this.estadoSeleccionado
     });
     modalCiudades.present();
+  }
+
+  pasarDatosRegistro(){
+    console.log(this.datosRegistro);
   }
 
   ionViewDidLoad() {
