@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-	<form (ngSubmit)="pasarDatosRegistro()">
+	<form #f="ngForm" (ngSubmit)="pasarDatosRegistro()">
 		<ion-list>
 			<ion-item>
 				<ion-label>Nombre:</ion-label>
@@ -74,7 +74,7 @@
 			</ion-item>
 		</ion-list>
 		<div padding>
-			 <button ion-button block (click)="pasarDatosRegistro()">Registrarse</button>
+			 <button ion-button block>Registrarse</button>
 		</div>
 	</form>
 </ion-content>

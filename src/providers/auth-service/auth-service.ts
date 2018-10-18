@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { GeoDataProvider } from '../geo-data/geo-data';
@@ -35,18 +35,44 @@ export class AuthServiceProvider {
 
     this.datosRegistro.state = this.geoService.estadoSeleccionado;
     this.datosRegistro.city = this.geoService.ciudadSeleccionada;
-
-    console.log(this.datosRegistro);
   }
 
-  // registrarUsuario(){
-  // 	let headers = new HttpHeaders();
-  // 	let route = 'user/new';
+  registrarUsuario(){
 
-  // 	headers.append('Accept', 'application/json');
-  // 	headers.append('Content-Type', 'application/json');
+    //console.log(this.datosRegistro);
+    let route = 'user/new';
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
 
-  // 	const request = new HttpRequest({ headers: headers }, this.API_URL+route );
-  // }
+    return this.http.post(this.API_URL+route, {
+      name: this.datosRegistro.name,
+      last_name: this.datosRegistro.last_name,
+      email: this.datosRegistro.email,
+      dni: this.datosRegistro.dni,
+      password: this.datosRegistro.password,
+      country: this.datosRegistro.country,
+      state: this.datosRegistro.state,
+      city: this.datosRegistro.city,
+      address: this.datosRegistro.address,
+      zip_code: this.datosRegistro.zip_code,
+      phone_number: this.datosRegistro.phone_number
+    }, {headers})
+    .subscribe(val => {
+      console.log("Respuesta", val);
+    },
+    response => {
+      console.log("En error", response);
+    },
+    () => {
+      console.log("completado");
+    });
+  	// let headers = new HttpHeaders();
+  	// let route = 'user/new';
+
+  	// headers.append('Accept', 'application/json');
+  	// headers.append('Content-Type', 'application/json');
+
+  	// const request = new HttpRequest({ headers: headers }, this.API_URL+route );
+  }
 
 }

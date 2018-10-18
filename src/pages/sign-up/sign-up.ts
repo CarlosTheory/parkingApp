@@ -62,7 +62,7 @@ export class SignUpPage {
   }
 
   pasarDatosRegistro(){
-    console.log(this.datosRegistro);
+    this.authService.registrarUsuario();
   }
 
   ionViewDidLoad() {
