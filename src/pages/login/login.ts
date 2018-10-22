@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignUpPage } from '../sign-up/sign-up';
 
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -16,9 +18,17 @@ import { SignUpPage } from '../sign-up/sign-up';
 })
 export class LoginPage {
   
+  datosLogin = {};
+
   pushSignUp: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
   	this.pushSignUp = SignUpPage;
+
+  	this.datosLogin = this.authService.datosLogin;
+  }
+
+  entrarLogin(){
+  	this.authService.entrarLogin();
   }
 
   ionViewDidLoad() {

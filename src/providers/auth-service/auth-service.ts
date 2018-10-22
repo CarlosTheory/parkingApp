@@ -13,6 +13,12 @@ import { GeoDataProvider } from '../geo-data/geo-data';
 @Injectable()
 export class AuthServiceProvider {
 
+  private datosLogin = {
+    email: '',
+    password: '',
+  };
+
+  private token: any;
 
   datosRegistro = {
     name: '',
@@ -66,13 +72,26 @@ export class AuthServiceProvider {
     () => {
       console.log("completado");
     });
-  	// let headers = new HttpHeaders();
-  	// let route = 'user/new';
+  }
 
-  	// headers.append('Accept', 'application/json');
-  	// headers.append('Content-Type', 'application/json');
+  entrarLogin(){
+    let token;
+    let route = 'login';
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
 
-  	// const request = new HttpRequest({ headers: headers }, this.API_URL+route );
+    return this.http.post(this.API_URL+route, {
+      email: this.datosLogin.email,
+      password:this.datosLogin.password,
+    }, {headers})
+    .subscribe(val => {
+      token = val;
+      this.token = token.success.token
+      console.log("Token: ", this.token);
+    },
+    response => {
+      console.log("Error: ", response );
+    });
   }
 
 }

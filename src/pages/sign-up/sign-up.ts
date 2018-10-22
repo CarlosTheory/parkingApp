@@ -65,6 +65,7 @@ export class SignUpPage {
     this.authService.registrarUsuario();
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignUpPage');
   }

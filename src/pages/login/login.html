@@ -14,24 +14,26 @@
 
 
 <ion-content padding>
-	<ion-list>
-		<ion-item>
-			<ion-label>e-mail</ion-label>
-			<ion-input type="text" value=""></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>contraseña</ion-label>
-			<ion-input type="password" value=""></ion-input>
-		</ion-item>
-		<div padding>
-		  <button ion-button block>Entrar</button>
-		</div>
-		<div padding text-center class="no-account">
-			<button>No quiero crear una cuenta</button>
-		</div>
-		<div padding>
-		  <button ion-button round [navPush]="pushSignUp">Registrarse</button>
-		  <button ion-button round color="danger">Olvide mi contraseña</button>
-		</div>
-	</ion-list>
+	<form (ngSubmit)="entrarLogin()">
+		<ion-list>
+			<ion-item>
+				<ion-label>e-mail: </ion-label>
+				<ion-input type="text" value="" name="email" [(ngModel)]="datosLogin.email"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>contraseña: </ion-label>
+				<ion-input type="password" value="" name="password" [(ngModel)]="datosLogin.password"></ion-input>
+			</ion-item>
+			<div padding>
+			  <button ion-button block>Entrar</button>
+			</div>
+			<div padding text-center class="no-account">
+				<button>No quiero crear una cuenta</button>
+			</div>
+			<div padding>
+			  <button ion-button round [navPush]="pushSignUp">Registrarse</button>
+			  <button ion-button round color="danger">Olvide mi contraseña</button>
+			</div>
+		</ion-list>
+	</form>
 </ion-content>
